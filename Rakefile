@@ -33,7 +33,7 @@ task :dictbuild => :environment do
 		end
 
 
-	  File.open('config/helloworld.txt', 'a') do |f|
+	  File.open('config/dictionary.txt', 'a') do |f|
 	  	dictionary.each do |fact|
 	  		f.puts(fact)
 	  	end

@@ -22,5 +22,5 @@ end
 
 	#load dictionary
 	MARK = Gabbler.new
-	@dictionary = File.read('config/helloworld.txt')
+	@dictionary = File.read('config/dictionary.txt')
 	MARK.learn(@dictionary)

@@ -1,7 +1,7 @@
-# mark's brain
 require 'sinatra'
-require 'yaml'
 require 'twitter'
+require 'yaml'
+require 'haml'
 require 'gabbler'
 
 configure do
@@ -18,19 +18,24 @@ configure do
 
 	#load dictionary
 	MARK = Gabbler.new
-	@dictionary = File.read('config/helloworld.txt')
+	@dictionary = File.read('config/dictionary.txt')
 	MARK.learn(@dictionary)
 end
 
 get '/' do
 	# show some generic stuff, documentation about mark, last tweet, etc
-	@tweet = false
-	until @tweet
+	@tweet = generate_tweet
+  haml :index
+end
+
+def generate_tweet
+	tweet = false
+	until tweet
   	candidate = MARK.sentence
   	if candidate.length < 140 && candidate.length > 80
-  		@tweet = candidate
+  		tweet = candidate
+  		tweet[0].upcase!
   	end
   end
-  @tweet[0] = @tweet[0].upcase
-  @tweet
+  return tweet
 end

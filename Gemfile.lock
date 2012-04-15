@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/nateberkopec/gabbler.git
+  revision: 13294e1b7733ceec8102f160dc444b8b9bf3bed5
+  specs:
+    gabbler (0.1.0)
+
+GIT
   remote: git://github.com/sinatra/sinatra.git
   revision: 0bf6b92cedd86df89068b3c0b1b0f58ad28287eb
   specs:
@@ -21,7 +27,6 @@ GEM
       addressable (~> 2.2)
       multipart-post (~> 1.1)
       rack (~> 1.1)
-    gabbler (0.1.0)
     haml (3.1.4)
     i18n (0.6.0)
     mechanize (2.3)
@@ -61,7 +66,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  gabbler
+  gabbler!
   haml
   mechanize
   nokogiri
