@@ -1,5 +1,6 @@
 task :environment do
   require File.expand_path(File.join(*%w[ config environment ]), File.dirname(__FILE__))
+  require './server'
 end
 
 task :dictbuild => :environment do
@@ -42,13 +43,5 @@ task :dictbuild => :environment do
 end
 
 task :tweet => :environment do
-	@tweet = false
-	until @tweet
-  	candidate = MARK.sentence
-  	if candidate.length < 140 && candidate.length > 80
-  		@tweet = candidate
-  	end
-  end
-  @tweet[0] = @tweet[0].upcase
-  Twitter.update(@tweet)
+  Twitter.update(generate_tweet)
 end
