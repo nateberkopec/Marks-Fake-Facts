@@ -18,9 +18,7 @@ Twitter.configure do |config|
   config.oauth_token_secret = APP_CONFIG[:twitter][:oauth_token_secret]
 end
 
-
-
-	#load dictionary
-	MARK = Gabbler.new
-	@dictionary = File.read('config/dictionary.txt')
-	MARK.learn(@dictionary)
+#load dictionary
+MARK = Gabbler.new
+@dictionary = File.read('config/dictionary.txt')
+MARK.learn(@dictionary)
