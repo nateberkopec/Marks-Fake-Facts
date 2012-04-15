@@ -1,5 +1,5 @@
 every 1.day, :at => '4:30 am' do 
-	rake 'dictbuild'
+	#rake 'dictbuild'
 end
 
 every :hour do
