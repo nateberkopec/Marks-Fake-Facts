@@ -5,6 +5,7 @@ require 'haml'
 require 'gabbler'
 
 configure do
+	set :views, settings.root + '/views'
 	ENVIRONMENT = "development"
 	raw_config = File.read("config/config.yml")
 	APP_CONFIG = YAML.load(raw_config)[ENVIRONMENT]
