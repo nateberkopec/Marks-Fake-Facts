@@ -1,5 +1,5 @@
 task :environment do
-  require File.expand_path(File.join(*%w[ config environment ]), File.dirname(__FILE__))
+  require File.expand_path(File.join(*%w[ initializer ]), File.dirname(__FILE__))
   require './server'
 end
 
