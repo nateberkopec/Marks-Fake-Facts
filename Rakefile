@@ -43,5 +43,9 @@ task :dictbuild => :environment do
 end
 
 task :tweet => :environment do
-  Twitter.update(generate_tweet)
+	if rand(2) == 0 #hack
+		tweet = generate_tweet
+		puts tweet
+  	Twitter.update(tweet)
+  end
 end
