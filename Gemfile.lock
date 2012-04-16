@@ -22,7 +22,6 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.7)
     bond (0.4.1)
-    chronic (0.6.7)
     domain_name (0.5.3)
       unf (~> 0.0.3)
     faraday (0.7.6)
@@ -76,9 +75,6 @@ GEM
       unf_ext
     unf_ext (0.0.4)
     webrobots (0.0.13)
-    whenever (0.7.3)
-      activesupport (>= 2.3.4)
-      chronic (~> 0.6.3)
 
 PLATFORMS
   ruby
@@ -91,4 +87,3 @@ DEPENDENCIES
   sinatra!
   tux
   twitter
-  whenever
