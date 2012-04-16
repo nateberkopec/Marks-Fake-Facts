@@ -18,7 +18,7 @@ def generate_tweet
 	sentence_form = page.forms.first
   until tweet
   	candidate = MARK.sentence
-  	if candidate.length < 140 && candidate.length > 60
+  	if candidate.length < 140 && candidate.length > 80
       tweet = candidate
       tweet = tweet[0].upcase + tweet[1..-1]
       unless tweet[-1].match(/([.!?])/)
@@ -27,7 +27,7 @@ def generate_tweet
       sentence_form.fields.first.value = tweet
       result = agent.submit(sentence_form)
       linkages = result.search('pre').last.content
-      if linkages['No complete linkages']
+      if !linkages['Found 1 linkage'] && !linkages['No complete linkages']
         tweet = nil
       end
     end
