@@ -7,13 +7,3 @@ development: &non_production_settings
   :site:
     :title: "Mark's Fake Facts"
     :address: "http://localhost:4567/"
-
-test:
-  <<: *non_production_settings
-
-production:
-  :google_analytics:
-    :api_key: "[Enter Google ID]"
-  :site:
-    :title: "[Title]"
-    :address: "[Address]"

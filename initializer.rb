@@ -19,6 +19,6 @@ Twitter.configure do |config|
 end
 
 #load dictionary
-MARK = Gabbler.new
+MARK = Gabbler.new(:depth => 3)
 @dictionary = File.read('config/dictionary.txt')
 MARK.learn(@dictionary)
