@@ -15,7 +15,7 @@ def generate_tweet
   tweet = false
   until tweet
     candidate = MARK.sentence
-    if candidate.length < 140 && candidate.length > 80
+    if candidate.length < 140 && candidate.length > 110
       candidate = candidate.sentenceize
       if check_grammar(candidate)
         tweet = candidate
