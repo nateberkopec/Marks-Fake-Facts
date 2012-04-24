@@ -4,6 +4,10 @@ task :environment do
 end
 
 task :dictbuild => :environment do
+
+	# if building your own twitterbot, you'll probably need to completely rewrite this
+	# to get your own dictionary file
+	
 	require 'rubygems'
 	require 'mechanize'
 	require 'pry'

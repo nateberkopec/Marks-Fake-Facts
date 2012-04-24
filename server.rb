@@ -12,6 +12,7 @@ get '/' do
 end
 
 def generate_tweet
+  # The next line feels bad.
   tweet = false
   until tweet
     candidate = MARK.sentence
@@ -27,6 +28,7 @@ end
 
 class String
   def sentenceize
+    # Fuck you, I'd rather write Javascript.
     this = self
     this = this[0].upcase + this[1..-1]
     unless this[-1].match(/([.!?])/)
@@ -37,6 +39,10 @@ class String
 end
 
 def check_grammar(candidate)
+  # 
+  # This is grey hat as FUCK, please don't tell anyone.
+  # TODO: Make this use a local copy of a link-grammar checker, not a shitty not-API.
+  #
   grammar_checker = Mechanize.new { |agent| agent.user_agent_alias = 'Mac Safari' }
   page = grammar_checker.get('http://www.link.cs.cmu.edu/link/submit-sentence-4.html')
   sentence_form = page.forms.first
