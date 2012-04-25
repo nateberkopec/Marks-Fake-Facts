@@ -47,9 +47,7 @@ task :dictbuild => :environment do
 end
 
 task :tweet => :environment do
-	if rand(2) == 0 #hack
-		tweet = generate_tweet
-		puts tweet
-  	Twitter.update(tweet)
-  end
+	if Time.now.hour % 3 == 0 # that is, every third hour
+  	Twitter.update(generate_tweet)
+	end
 end
