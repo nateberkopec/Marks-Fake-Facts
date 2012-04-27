@@ -7,11 +7,6 @@ task :dictbuild => :environment do
 
 	# if building your own twitterbot, you'll probably need to completely rewrite this
 	# to get your own dictionary file
-	
-	require 'rubygems'
-	require 'mechanize'
-	require 'pry'
-
 	agent = Mechanize.new { |agent| agent.user_agent_alias = 'Mac Safari' }
 	page = agent.get('http://en.wikipedia.org/wiki/Wikipedia:Recent_additions')
 
@@ -20,7 +15,6 @@ task :dictbuild => :environment do
 
 		facts = []
 
-		#binding.pry
 		page = agent.get "http://en.wikipedia.org" + fact_page.href
 		facts = page.search("#bodyContent .mw-content-ltr ul li")
 

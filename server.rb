@@ -1,9 +1,5 @@
 require 'sinatra'
-require 'twitter'
-require 'yaml'
-require 'haml'
-require 'gabbler'
-require 'mechanize'
+require './initializer'
 
 get '/' do
   # show some generic stuff, documentation about mark, last tweet, etc
@@ -12,8 +8,7 @@ get '/' do
 end
 
 def generate_tweet
-  candidate = MARK.sentence
-  candidate.sentenceize!
+  candidate = MARK.sentence.sentenceize!
   if (110..140) === candidate.length && candidate.good_grammar?
     return candidate
   else
@@ -28,7 +23,7 @@ class String
       self.replace(self + ".")
     end
   end
-  
+
   def good_grammar?
     grammar_checker = Mechanize.new { |agent| agent.user_agent_alias = 'Mac Safari' }
     page = grammar_checker.get('http://www.link.cs.cmu.edu/link/submit-sentence-4.html')

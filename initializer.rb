@@ -1,15 +1,15 @@
 require "rubygems"
 require "bundler"
 Bundler.setup
+
 require 'yaml'
-# mark's brain
 require 'twitter'
 require 'gabbler'
 require 'sinatra'
+require 'mechanize'
 
 ENVIRONMENT = "development"
-raw_config = File.read("config/config.yml")
-APP_CONFIG = YAML.load(raw_config)[ENVIRONMENT]
+APP_CONFIG = YAML.load(File.read("config/config.yml"))[ENVIRONMENT]
 
 Twitter.configure do |config|
   config.consumer_key = APP_CONFIG[:twitter][:consumer_key]
