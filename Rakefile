@@ -1,12 +1,12 @@
-task :environment do
-  require File.expand_path(File.join(*%w[ initializer ]), File.dirname(__FILE__))
+require 'dotenv/tasks'
+
+task :environment => :dotenv do
   require './server'
 end
 
 task :dictbuild => :environment do
-
 	# if building your own twitterbot, you'll probably need to completely rewrite this
-	# to get your own dictionary file
+	# to get your own dictionary file, this is all custom for wikipedia
 	agent = Mechanize.new { |agent| agent.user_agent_alias = 'Mac Safari' }
 	page = agent.get('http://en.wikipedia.org/wiki/Wikipedia:Recent_additions')
 
@@ -20,7 +20,6 @@ task :dictbuild => :environment do
 
 		dictionary = []
 
-
 		facts.each do |fact|
 			fact = fact.content
 			next unless fact['...'] && !fact['Did you know'] && !fact['Wikinews']
@@ -31,7 +30,6 @@ task :dictbuild => :environment do
 			dictionary.push(fact)
 		end
 
-
 	  File.open('config/dictionary.txt', 'a') do |f|
 	  	dictionary.each do |fact|
 	  		f.puts(fact)
@@ -41,7 +39,19 @@ task :dictbuild => :environment do
 end
 
 task :tweet => :environment do
-	if Time.now.hour % 3 == 0 # that is, every third hour
-  	Twitter.update(generate_tweet)
-	end
+  mark = Mark.new("dictionaries/#{dictionaries.sample}.txt")
+  if Time.now.hour % 3 == 0
+    Twitter.update(mark.generate_fact)
+  end
 end
+
+task :tweet => :environment do
+  mark = Mark.new("dictionaries/#{dictionaries.sample}.txt")
+  Twitter.update(mark.generate_fact)
+end
+
+desc "Open an irb session preloaded with emmetty goodness"
+task :console do
+  sh "irb -rubygems -I . -r initializer.rb"
+end
+
